@@ -21,12 +21,13 @@ configs:
     file: ./prometheus/rules/swarm_task.rules.yml
 
 services:
-  dockerd-exporter:
-    image: stefanprodan/caddy
+   dockerd-exporter:
+    build: ./caddy
+    image: smartuser/swarmprom_caddy
     networks:
       - net
     environment:
-      - DOCKER_GWBRIDGE_IP=172.18.0.1
+      - DOCKER_GWBRIDGE_IP=172.17.0.1
     configs:
       - source: dockerd_config
         target: /etc/caddy/Caddyfile
