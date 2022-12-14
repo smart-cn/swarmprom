@@ -59,7 +59,8 @@ services:
           memory: 64M
 
   grafana:
-    image: stefanprodan/swarmprom-grafana:5.3.4
+    build: ./grafana
+    image: smartuser/swarmprom_grafana
     networks:
       - net
     environment:
