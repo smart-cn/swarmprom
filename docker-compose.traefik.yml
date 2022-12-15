@@ -59,7 +59,8 @@ services:
           memory: 64M
 
   grafana:
-    image: stefanprodan/swarmprom-grafana:5.3.4
+    build: ./grafana
+    image: smartuser/swarmprom_grafana
     networks:
       - default
       - net
@@ -102,7 +103,8 @@ services:
         - traefik.http.services.swarmprom-grafana.loadbalancer.server.port=3000
 
   alertmanager:
-    image: stefanprodan/swarmprom-alertmanager:v0.14.0
+    build: ./alertmanager
+    image: smartuser/swarmprom_alertmanager
     networks:
       - default
       - net

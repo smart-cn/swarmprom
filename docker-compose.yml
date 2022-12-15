@@ -89,7 +89,8 @@ services:
           memory: 64M
 
   alertmanager:
-    image: stefanprodan/swarmprom-alertmanager:v0.14.0
+    build: ./alertmanager
+    image: smartuser/swarmprom_alertmanager
     networks:
       - net
     environment:
