@@ -114,12 +114,12 @@ services:
         reservations:
           memory: 64M
 
-  unsee:
-    image: cloudflare/unsee:v0.8.0
+  karma:
+    image: ghcr.io/prymitive/karma:v0.103
     networks:
       - net
     environment:
-      - "ALERTMANAGER_URIS=default:http://alertmanager:9093"
+      - "ALERTMANAGER_URI=http://alertmanager:9093"
     deploy:
       mode: replicated
       replicas: 1

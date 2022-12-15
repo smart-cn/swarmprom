@@ -144,14 +144,12 @@ services:
         - traefik.http.middlewares.swarmprom-alertmanager-auth.basicauth.users=${ADMIN_USER?Variable ADMIN_USER not set}:${HASHED_PASSWORD?Variable HASHED_PASSWORD not set}
         - traefik.http.routers.swarmprom-alertmanager-https.middlewares=swarmprom-alertmanager-auth
 
-  unsee:
-    image: cloudflare/unsee:v0.8.0
+  karma:
+    image: ghcr.io/prymitive/karma:v0.103
     networks:
-      - default
       - net
-      - traefik-public
     environment:
-      - "ALERTMANAGER_URIS=default:http://alertmanager:9093"
+      - "ALERTMANAGER_URI=http://alertmanager:9093"
     deploy:
       mode: replicated
       replicas: 1
