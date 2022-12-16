@@ -12,7 +12,7 @@ before_install:
 
 script:
   - cd prometheus && docker build -t stefanprodan/swarmprom-prometheus:$TRAVIS_BUILD_NUMBER .
-  - cd .. && cd node-exporter && docker build -t stefanprodan/swarmprom-node-exporter:$TRAVIS_BUILD_NUMBER .
+  - cd .. && cd node-exporter && docker build -t smartuser/swarmprom_node-exporter:$TRAVIS_BUILD_NUMBER .
   - cd .. && cd alertmanager && docker build -t smartuser/swarmprom_alertmanager:$TRAVIS_BUILD_NUMBER .
   - cd .. && cd grafana && docker build -t smartuser/swarmprom_grafana:$TRAVIS_BUILD_NUMBER .
 
@@ -23,8 +23,10 @@ after_success:
     docker login -u "$DOCKER_USER" -p "$DOCKER_PASS";
     docker tag stefanprodan/swarmprom-prometheus:$TRAVIS_BUILD_NUMBER stefanprodan/swarmprom-prometheus:v2.5.0;
     docker push stefanprodan/swarmprom-prometheus:v2.5.0;
-    docker tag stefanprodan/swarmprom-node-exporter:$TRAVIS_BUILD_NUMBER stefanprodan/swarmprom-node-exporter:v0.16.0;
-    docker push stefanprodan/swarmprom-node-exporter:v0.16.0;
+    docker tag smartuser/swarmprom_node-exporter:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_node-exporter:v1.3.1;
+    docker push smartuser/swarmprom_node-exporter:v1.3.1;
+    docker tag smartuser/swarmprom_node-exporter:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_node-exporter;
+    docker push smartuser/swarmprom_node-exporter;
     docker tag smartuser/swarmprom_alertmanager:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_alertmanager:v0.24.0;
     docker push smartuser/swarmprom_alertmanager:v0.24.0;
     docker tag smartuser/swarmprom_alertmanager:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_alertmanager;

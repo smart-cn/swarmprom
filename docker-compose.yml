@@ -125,7 +125,8 @@ services:
       replicas: 1
 
   node-exporter:
-    image: stefanprodan/swarmprom-node-exporter:v0.16.0
+    build: ./node-exporter
+    image: smartuser/swarmprom_node-exporter
     networks:
       - net
     environment:
@@ -133,9 +134,10 @@ services:
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-      - /:/rootfs:ro
+      - /:/rootfs:ro,rslave
       - /etc/hostname:/etc/nodename
     command:
+      - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--path.procfs=/host/proc'
       - '--collector.textfile.directory=/etc/node-exporter/'
