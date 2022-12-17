@@ -11,7 +11,7 @@ before_install:
   - sudo service docker restart
 
 script:
-  - cd prometheus && docker build -t stefanprodan/swarmprom-prometheus:$TRAVIS_BUILD_NUMBER .
+  - cd prometheus && docker build -t smartuser/swarmprom_prometheus:$TRAVIS_BUILD_NUMBER .
   - cd .. && cd node-exporter && docker build -t smartuser/swarmprom_node-exporter:$TRAVIS_BUILD_NUMBER .
   - cd .. && cd alertmanager && docker build -t smartuser/swarmprom_alertmanager:$TRAVIS_BUILD_NUMBER .
   - cd .. && cd grafana && docker build -t smartuser/swarmprom_grafana:$TRAVIS_BUILD_NUMBER .
@@ -21,8 +21,10 @@ after_success:
       echo "PR build, skipping Docker Hub push";
     else
     docker login -u "$DOCKER_USER" -p "$DOCKER_PASS";
-    docker tag stefanprodan/swarmprom-prometheus:$TRAVIS_BUILD_NUMBER stefanprodan/swarmprom-prometheus:v2.5.0;
-    docker push stefanprodan/swarmprom-prometheus:v2.5.0;
+    docker tag smartuser/swarmprom_prometheus:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_prometheus:v2.36.0;
+    docker push smartuser/swarmprom_prometheus:v2.36.0;
+    docker tag smartuser/swarmprom_prometheus:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_prometheus;
+    docker push smartuser/swarmprom_prometheus;
     docker tag smartuser/swarmprom_node-exporter:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_node-exporter:v1.3.1;
     docker push smartuser/swarmprom_node-exporter:v1.3.1;
     docker tag smartuser/swarmprom_node-exporter:$TRAVIS_BUILD_NUMBER smartuser/swarmprom_node-exporter;
