@@ -21,7 +21,7 @@ configs:
     file: ./prometheus/rules/swarm_task.rules.yml
 
 services:
-   dockerd-exporter:
+  dockerd-exporter:
     build: ./caddy
     image: smartuser/swarmprom_caddy
     networks:
@@ -143,7 +143,6 @@ services:
         - traefik.http.services.swarmprom-alertmanager.loadbalancer.server.port=9093
         - traefik.http.middlewares.swarmprom-alertmanager-auth.basicauth.users=${ADMIN_USER?Variable ADMIN_USER not set}:${HASHED_PASSWORD?Variable HASHED_PASSWORD not set}
         - traefik.http.routers.swarmprom-alertmanager-https.middlewares=swarmprom-alertmanager-auth
-
   karma:
     image: ghcr.io/prymitive/karma:v0.103
     networks:
