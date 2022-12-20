@@ -5,14 +5,14 @@ Swarmprom is a starter kit for Docker Swarm monitoring with [Prometheus](https:/
 [cAdvisor](https://github.com/google/cadvisor),
 [Node Exporter](https://github.com/prometheus/node_exporter),
 [Alert Manager](https://github.com/prometheus/alertmanager)
-and [Unsee](https://github.com/cloudflare/unsee).
+and [Karma](https://github.com/prymitive/karma) (*ex* [Unsee](https://github.com/cloudflare/unsee)).
 
 ## Install
 
 Clone this repository and run the monitoring stack:
 
 ```bash
-$ git clone https://github.com/stefanprodan/swarmprom.git
+$ git clone https://github.com/smart-cn/swarmprom.git
 $ cd swarmprom
 
 ADMIN_USER=admin \
@@ -60,7 +60,7 @@ These instructions assume you already have Traefik set up following that guide a
 * Clone this repository and enter into the directory:
 
 ```bash
-$ git clone https://github.com/stefanprodan/swarmprom.git
+$ git clone https://github.com/smart-cn/swarmprom.git
 $ cd swarmprom
 ```
 
